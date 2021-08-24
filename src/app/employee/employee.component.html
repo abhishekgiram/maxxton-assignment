@@ -1,0 +1,82 @@
+<button (click)="sortByName()">Sort By Name</button>
+<button (click)="sortByJoiningDate()">Sort By Joining Date</button>
+<button (click)="getExperiencedEmployee()" [disabled]="experienced">2+ Years Experience</button>
+<button *ngIf="experienced" (click)="getAllEmployee()">Get All Employess</button>
+<button (click)="removeDevelopment()">Remove Development</button>
+  <div class="container" *ngIf="allEmployee" >
+    <div class="row">
+      <div class="col-md-2">
+      </div>
+      <div class="col-md-10">
+        <input type="text" class="search" placeholder="Search By Name"  [(ngModel)]="term"/>
+      </div>
+    </div>
+    <br/>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Department</th>
+        <th>Joining Date</th>
+      </tr>
+      <tr *ngFor="let candidate of candidate_data.candidate_data | filter:term">
+        <td>{{candidate.name}}</td>
+        <td>{{candidate.department}}</td>
+        <td>{{candidate.joining_date}}</td>
+      </tr>
+    </table>
+    <div ></div>
+  </div>
+  <div class="container" *ngIf="experienced" >
+    <div class="row">
+      <div class="col-md-2">
+      </div>
+      <div class="col-md-10">
+        <input type="text" class="search" placeholder="Search By Name"  [(ngModel)]="term"/>
+      </div>
+    </div>
+    <br/>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Department</th>
+        <th>Joining Date</th>
+      </tr>
+      <tr *ngFor="let candidate of experiencedEmployees | filter:term">
+        <td>{{candidate.name}}</td>
+        <td>{{candidate.department}}</td>
+        <td>{{candidate.joining_date}}</td>
+      </tr>
+    </table>
+    <div ></div>
+  </div>
+  <li>
+    <h3>Finance: {{finance}}</h3>
+    <h3>HR: {{hr}}</h3>
+    <h3>Operations: {{operations}} </h3>
+    <h3>Development: {{development}}</h3>
+  </li>
+ 
+  <div class="container" *ngIf="departmentAfterDevelopment.length>0" >
+    <h2> List After Development is Removed</h2>
+    <div class="row">
+      <div class="col-md-2">
+      </div>
+      <div class="col-md-10">
+        <input type="text" class="search" placeholder="Search By Name"  [(ngModel)]="term"/>
+      </div>
+    </div>
+    <br/>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Department</th>
+        <th>Joining Date</th>
+      </tr>
+      <tr *ngFor="let candidate of departmentAfterDevelopment | filter:term">
+        <td>{{candidate.name}}</td>
+        <td>{{candidate.department}}</td>
+        <td>{{candidate.joining_date}}</td>
+      </tr>
+    </table>
+    <div ></div>
+  </div>
